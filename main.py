@@ -1,16 +1,37 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+import psutil
+from time import sleep
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+def cpu(value=0):
 
+    ''' Função retorna porcentagem cpu , frequencia e count '''
+    cpulist = list()
+    while len(cpulist) != 10:
+        sleep(1)
+        cpu = (psutil.cpu_percent(), psutil.cpu_freq(), psutil.cpu_count())
+        cpulist.append(cpu[value])
+        print(cpu[value], end=' ')
+        print(len(cpulist))
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+def memory(value=0):
+    memoryList = list()
+    while len(memoryList) != 10:
+        sleep(1)
+        memory = (psutil.swap_memory(), psutil.virtual_memory())
+        memoryList.append(memory)
+        print(memory[value], end=' ')
+        print(len(memoryList))
+def selecor():
+    while True:
+        NumberSelector = int(input("Input Number: "))
+        stats = int(input("Input Stats: "))
+        if NumberSelector == 1:
+            cpu(stats)
+            if stats == 1:
+                ...
+        if NumberSelector == 2:
+            memory(stats)
+        else:
+            print("Number Select Error")
+if True:
+    selecor()
