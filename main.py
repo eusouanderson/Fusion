@@ -13,27 +13,29 @@ class color:
     ENDC = '\033[0m'
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
-def colourbox(type, txt):
+def colourBox(type, txt):
     print("~" * len(txt))
     print(f"{type}{txt} " + color.ENDC)
     print(color.OKBLUE + "Developed by Anderson" + color.ENDC)
     print("~" * len(txt))
 
-
+def colourTxt(type, txt):
+    print(f"{type}{txt}" + color.ENDC)
 
 def cpu(value, para, p):
     cpulist = list()
 
     while len(cpulist) != 10:
         sleep(1)
+        cont = len(cpulist)
         cpu = (psutil.cpu_percent(), psutil.cpu_freq(), psutil.cpu_count())
         cpulist.append(cpu[value])
         if p:
-            print(cpu[value], end=' ')
+            colourTxt(color.OKGREEN, cpu[value]), + cont
         else:
-            print(cpu[value][para], end=' ')
-        print(len(cpulist))
-    colourbox(color.HEADER, f"Successful Cpu Test {time}")
+            colourTxt(color.OKGREEN, cpu[value][para]), + cont
+
+    colourBox(color.HEADER, f"Successful Cpu Test {time}")
 
 
 def memory(value, para, p):
@@ -41,21 +43,22 @@ def memory(value, para, p):
 
     while len(memoryList) != 10:
         sleep(1)
+        cont = len(memoryList)
         memory = (psutil.swap_memory(), psutil.virtual_memory())
         memoryList.append(memory)
         if p:
-            print(memory[value], end=' ')
+            colourTxt(color.OKGREEN + f"{memory[value]}"), + cont
         else:
-            print(memory[value][para], end=' ')
-        print(len(memoryList))
-    colourbox(color.HEADER,f"Successful Memory Test {time}")
+            colourTxt(color.OKGREEN +f" {memory[value][para]}"), + cont
+
+    colourBox(color.HEADER,f"Successful Memory Test {time}")
 
 
 def selecor():
     NumberSelector = ""
 
     while NumberSelector != 000:
-        colourbox(color.HEADER, "Welcome to Fusion program")
+        colourBox(color.HEADER, "Welcome to Fusion program")
         NumberSelector = int(input("0 to Cpu List\n1 to Memory List: "))
         responseCpu = "0 to Cpu Stats %\n1 to Cpu Feq\n2 to Cpu Count:\n "
         responseMemory = "0 to Swap Memory\n1 to Virtual Memory: "
@@ -99,7 +102,6 @@ def selecor():
             if stats == 2:
                 print(CpuCount)
                 cpu(stats, 0, True)
-
 
         # SELECET MEMORY >>>>>>>>>>>>>>>>>>>>>>>
         if NumberSelector == 1:
