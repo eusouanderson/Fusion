@@ -20,7 +20,7 @@ def colourBox(type, txt):
     print("~" * len(txt))
 
 def colourTxt(type, txt):
-    print(f"{type}{txt}" + color.ENDC)
+    print(f"{type}{txt} {color.ENDC}", end='')
 
 def cpu(value, para, p):
     cpulist = list()
@@ -31,10 +31,9 @@ def cpu(value, para, p):
         cpu = (psutil.cpu_percent(), psutil.cpu_freq(), psutil.cpu_count())
         cpulist.append(cpu[value])
         if p:
-            colourTxt(color.OKGREEN, cpu[value]), + cont
+            colourTxt(color.OKGREEN, cpu[value]), print(f"Test nº {cont}")
         else:
-            colourTxt(color.OKGREEN, cpu[value][para]), + cont
-
+            colourTxt(color.OKGREEN, cpu[value][para]), print(f"Test nº {cont}")
     colourBox(color.HEADER, f"Successful Cpu Test {time}")
 
 
@@ -47,11 +46,10 @@ def memory(value, para, p):
         memory = (psutil.swap_memory(), psutil.virtual_memory())
         memoryList.append(memory)
         if p:
-            colourTxt(color.OKGREEN + f"{memory[value]}"), + cont
+            colourTxt(color.OKGREEN, memory[value]), print(f"Test nº {cont}")
         else:
-            colourTxt(color.OKGREEN +f" {memory[value][para]}"), + cont
-
-    colourBox(color.HEADER,f"Successful Memory Test {time}")
+            colourTxt(color.OKGREEN, memory[value][para]), print(f"Test nº {cont}")
+    colourBox(color.HEADER, f"Successful Memory Test {time}")
 
 
 def selecor():
