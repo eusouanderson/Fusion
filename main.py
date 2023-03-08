@@ -1,7 +1,7 @@
 import psutil
 from time import sleep, strftime
 
-time = strftime("%H:%M:%S")
+timestart = strftime("%H:%M:%S")
 class color:
 
     HEADER = f'\033[95m'
@@ -27,6 +27,7 @@ def cpu(value, para, p):
 
     while len(cpulist) != 10:
         sleep(1)
+        timeEnd = strftime("%H:%M:%S")
         cont = len(cpulist)
         cpu = (psutil.cpu_percent(), psutil.cpu_freq(), psutil.cpu_count())
         cpulist.append(cpu[value])
@@ -34,7 +35,7 @@ def cpu(value, para, p):
             colourTxt(color.OKGREEN, cpu[value]), print(f"Test nº {cont}")
         else:
             colourTxt(color.OKGREEN, cpu[value][para]), print(f"Test nº {cont}")
-    colourBox(color.HEADER, f"Successful Cpu Test {time}")
+    colourBox(color.HEADER, f"Successful Cpu Test Start in {timestart} End in {timeEnd}")
 
 
 def memory(value, para, p):
@@ -42,6 +43,7 @@ def memory(value, para, p):
 
     while len(memoryList) != 10:
         sleep(1)
+        timeEnd = strftime("%H:%M:%S")
         cont = len(memoryList)
         memory = (psutil.swap_memory(), psutil.virtual_memory())
         memoryList.append(memory)
@@ -49,7 +51,7 @@ def memory(value, para, p):
             colourTxt(color.OKGREEN, memory[value]), print(f"Test nº {cont}")
         else:
             colourTxt(color.OKGREEN, memory[value][para]), print(f"Test nº {cont}")
-    colourBox(color.HEADER, f"Successful Memory Test {time}")
+    colourBox(color.HEADER, f"Successful Memory Test {timestart} End in {timeEnd}")
 
 
 def selecor():
@@ -58,7 +60,7 @@ def selecor():
     while NumberSelector != 000:
         colourBox(color.HEADER, "Welcome to Fusion program")
         NumberSelector = int(input("0 to Cpu List\n1 to Memory List: "))
-        responseCpu = "0 to Cpu Stats %\n1 to Cpu Feq\n2 to Cpu Count:\n "
+        responseCpu = colourTxt(color.OKCYAN, "0 to Cpu Stats %\n1 to Cpu Feq\n2 to Cpu Count:\n ")
         responseMemory = "0 to Swap Memory\n1 to Virtual Memory: "
         CpuStats = "Your Selected Cpu %\n"
         CpuFreq = "Your Selected Cpu Freq\n"
