@@ -13,14 +13,16 @@ class color:
     ENDC = '\033[0m'
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
-def colourBox(type, txt):
-    print("~" * len(txt))
-    print(f"{type}{txt} " + color.ENDC)
-    print(color.OKBLUE + "Developed by Anderson" + color.ENDC)
-    print("~" * len(txt))
+    def txt(type, txt):
+        print(f"{type}{txt} {color.ENDC}", end='')
+        
+    def box(type, txt):
+        print("~" * len(txt))
+        print(f"{type}{txt} " + color.ENDC)
+        print(color.OKBLUE + "Developed by Anderson" + color.ENDC)
+        print("~" * len(txt))
 
-def colourTxt(type, txt):
-    print(f"{type}{txt} {color.ENDC}", end='')
+
 
 def cpu(value, para, p):
     cpulist = list()
@@ -32,10 +34,10 @@ def cpu(value, para, p):
         cpu = (psutil.cpu_percent(), psutil.cpu_freq(), psutil.cpu_count())
         cpulist.append(cpu[value])
         if p:
-            colourTxt(color.OKGREEN, cpu[value]), print(f"Test nº {cont}")
+            color.txt(color.OKGREEN, cpu[value]), print(f"Test nº {cont}")
         else:
-            colourTxt(color.OKGREEN, cpu[value][para]), print(f"Test nº {cont}")
-    colourBox(color.HEADER, f"Successful Cpu Test Start in {timestart} End in {timeEnd}")
+            color.txt(color.OKGREEN, cpu[value][para]), print(f"Test nº {cont}")
+    color.box(color.HEADER, f"Successful Cpu Test Start in {timestart} End in {timeEnd}")
 
 
 def memory(value, para, p):
@@ -48,19 +50,19 @@ def memory(value, para, p):
         memory = (psutil.swap_memory(), psutil.virtual_memory())
         memoryList.append(memory)
         if p:
-            colourTxt(color.OKGREEN, memory[value]), print(f"Test nº {cont}")
+            color.txt(color.OKGREEN, memory[value]), print(f"Test nº {cont}")
         else:
-            colourTxt(color.OKGREEN, memory[value][para]), print(f"Test nº {cont}")
-    colourBox(color.HEADER, f"Successful Memory Test {timestart} End in {timeEnd}")
+            color.txt(color.OKGREEN, memory[value][para]), print(f"Test nº {cont}")
+    color.box(color.HEADER, f"Successful Memory Test {timestart} End in {timeEnd}")
 
 
 def selecor():
     NumberSelector = ""
 
     while NumberSelector != 000:
-        colourBox(color.HEADER, "Welcome to Fusion program")
+        color.box(color.HEADER, "Welcome to Fusion program")
         NumberSelector = int(input("0 to Cpu List\n1 to Memory List: "))
-        responseCpu = colourTxt(color.OKCYAN, "0 to Cpu Stats %\n1 to Cpu Feq\n2 to Cpu Count:\n ")
+        responseCpu = color.txt(color.OKCYAN, "0 to Cpu Stats %\n1 to Cpu Feq\n2 to Cpu Count:\n ")
         responseMemory = "0 to Swap Memory\n1 to Virtual Memory: "
         CpuStats = "Your Selected Cpu %\n"
         CpuFreq = "Your Selected Cpu Freq\n"
@@ -74,7 +76,7 @@ def selecor():
         MemorySout = "Your Selected Memory Sout\n"
         MemoryTotal = "Your Selected Memory Total\n"
         MemoryAvaillable = "Your Select Memory Available\n"
-        error = 'Error Select Number Ivalid'
+        error = color.txt(color.FAIL, 'Error Select Number Ivalid')
         Memory = [MemoryTotal, MemoryAvaillable, MemoryPercent, MemoryUsed, MemoryFree, MemorySout, MemorySin,
                   MemorySwap]
 
