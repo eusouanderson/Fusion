@@ -58,88 +58,93 @@ def memory(value, para, p):
 
 def selecor():
     NumberSelector = ""
-
+    
     while NumberSelector != 000:
         color.box(color.HEADER, "Welcome to Fusion program")
-        NumberSelector = int(input("0 to Cpu List\n1 to Memory List: "))
-        responseCpu = color.txt(color.OKCYAN, "0 to Cpu Stats %\n1 to Cpu Feq\n2 to Cpu Count:\n ")
-        responseMemory = "0 to Swap Memory\n1 to Virtual Memory: "
-        CpuStats = "Your Selected Cpu %\n"
-        CpuFreq = "Your Selected Cpu Freq\n"
-        CpuCount = "Your Selected Cpu Count\n"
+        
+        try:
+            NumberSelector = int(input("0 to Cpu List\n1 to Memory List: "))
 
-        MemorySwap = "Your Selected Memory Swap\n"
-        MemoryUsed = "Your Selected Memory Used\n"
-        MemoryFree = "Your Selected Memory Free\n"
-        MemoryPercent = "Your Selected Memory Percent\n"
-        MemorySin = "Your Selected Memory Sin\n"
-        MemorySout = "Your Selected Memory Sout\n"
-        MemoryTotal = "Your Selected Memory Total\n"
-        MemoryAvaillable = "Your Select Memory Available\n"
-        error = color.txt(color.FAIL, 'Error Select Number Ivalid')
-        Memory = [MemoryTotal, MemoryAvaillable, MemoryPercent, MemoryUsed, MemoryFree, MemorySout, MemorySin,
-                  MemorySwap]
+            responseCpu = "0 to Cpu Stats %\n1 to Cpu Feq\n2 to Cpu Count:\n"
+            responseMemory = "0 to Swap Memory\n1 to Virtual Memory: "
+            CpuStats = "Your Selected Cpu %\n"
+            CpuFreq = "Your Selected Cpu Freq\n"
+            CpuCount = "Your Selected Cpu Count\n"
 
-        # Select CPU >>>>>>>>>>>>>>>>>>>>
+            MemorySwap = "Your Selected Memory Swap\n"
+            MemoryUsed = "Your Selected Memory Used\n"
+            MemoryFree = "Your Selected Memory Free\n"
+            MemoryPercent = "Your Selected Memory Percent\n"
+            MemorySin = "Your Selected Memory Sin\n"
+            MemorySout = "Your Selected Memory Sout\n"
+            MemoryTotal = "Your Selected Memory Total\n"
+            MemoryAvaillable = "Your Select Memory Available\n"
+            
+            Memory = [MemoryTotal, MemoryAvaillable, MemoryPercent, MemoryUsed, MemoryFree, MemorySout, MemorySin,
+                    MemorySwap]
 
-        if NumberSelector == 0:
-            print(responseCpu)
-            stats = int(input("Input Stats: "))
+            # Select CPU >>>>>>>>>>>>>>>>>>>>
 
-            # CPU %
-            if stats == 0:
-                print(CpuStats)
-                cpu(stats, 0, True)
+            if NumberSelector == 0:
+                print(responseCpu)
+                stats = int(input("Input Stats: "))
 
-            # CPU FREQ
-            if stats == 1:
-                print(CpuFreq)
-                cpufreqoption = int(input("Select\n0 to CurrentCpuFreq\n1 to CpuMinFreq\n2 to CpuMaxFreq: "))
-                if cpufreqoption == 0 or cpufreqoption == 1 or cpufreqoption == 2:
-                    cpu(stats, cpufreqoption, False)
-                else:
-                    print(error)
+                # CPU %
+                if stats == 0:
+                    print(CpuStats)
+                    cpu(stats, 0, True)
 
-            # CPU COUNT
-            if stats == 2:
-                print(CpuCount)
-                cpu(stats, 0, True)
+                # CPU FREQ
+                if stats == 1:
+                    print(CpuFreq)
+                    cpufreqoption = int(input("Select\n0 to CurrentCpuFreq\n1 to CpuMinFreq\n2 to CpuMaxFreq: "))
+                    if cpufreqoption == 0 or cpufreqoption == 1 and cpufreqoption == 2:
+                        cpu(stats, cpufreqoption, False)
+                    else:
+                        print(error)
 
-        # SELECET MEMORY >>>>>>>>>>>>>>>>>>>>>>>
-        if NumberSelector == 1:
-            print(responseMemory)
-            stats = int(input("Input Stats: "))
-            if stats == 0:
-                swapMemory = int(input(
-                    "Select\n0 to MemoryTotal\n1 to MemoryUsed\n2 to MemoryFree\n3 to MemoryPercent\n4 to "
-                    "MemorySin\n5 to MemorySout: "))
-                if swapMemory == 0 or swapMemory == 1 or swapMemory == 2 or swapMemory == 3 or swapMemory == 4 \
-                        or swapMemory == 5:
-                    memory(stats, swapMemory, False)
+                # CPU COUNT
+                if stats == 2:
+                    print(CpuCount)
+                    cpu(stats, 0, True)
 
-            if stats == 1:
-                virtualMemory = int(input(
-                    "Select\n0 to MemoryTotal\n1 to MemoryAvailable\n2 to MemoryPercent\n3 to MemorUsed\n4 to "
-                    "MemoryFree: "))
+            # SELECET MEMORY >>>>>>>>>>>>>>>>>>>>>>>
+            if NumberSelector == 1:
+                print(responseMemory)
+                stats = int(input("Input Stats: "))
+                if stats == 0:
+                    swapMemory = int(input(
+                        "Select\n0 to MemoryTotal\n1 to MemoryUsed\n2 to MemoryFree\n3 to MemoryPercent\n4 to "
+                        "MemorySin\n5 to MemorySout: "))
+                    if swapMemory == 0 or swapMemory == 1 or swapMemory == 2 or swapMemory == 3 or swapMemory == 4 \
+                            or swapMemory == 5:
+                        memory(stats, swapMemory, False)
 
-                if virtualMemory == 0 or 1 or 2 or 3 or 4:
-                    if virtualMemory == 0:
-                        print(Memory[0])
-                    if virtualMemory == 1:
-                        print(Memory[1])
-                    if virtualMemory == 2:
-                        print(Memory[2])
-                    if virtualMemory == 3:
-                        print(Memory[3])
-                    if virtualMemory == 4:
-                        print(Memory[4])
-                    memory(stats, virtualMemory, False)
+                if stats == 1:
+                    virtualMemory = int(input(
+                        "Select\n0 to MemoryTotal\n1 to MemoryAvailable\n2 to MemoryPercent\n3 to MemorUsed\n4 to "
+                        "MemoryFree: "))
 
-                if virtualMemory == 5:
-                    memory(stats, virtualMemory, False)
-        else:
-            print(error)
+                    if virtualMemory == 0 or 1 or 2 or 3 or 4:
+                        if virtualMemory == 0:
+                            print(Memory[0])
+                        if virtualMemory == 1:
+                            print(Memory[1])
+                        if virtualMemory == 2:
+                            print(Memory[2])
+                        if virtualMemory == 3:
+                            print(Memory[3])
+                        if virtualMemory == 4:
+                            print(Memory[4])
+                        memory(stats, virtualMemory, False)
 
+                    if virtualMemory == 5:
+                        memory(stats, virtualMemory, False)
+          
+        except Exception as error:
+            if NumberSelector != 0 or 1 or 2:
+                print(f"Erro {error.__class__} Input Number Int!")
+                print(error)
 
 if True:
     selecor()
