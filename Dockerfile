@@ -1,3 +1,11 @@
-FROM python
-RUN pip install psutil==5.9.4
+FROM python:3
 
+WORKDIR /app
+
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+EXPOSE 8080
+
+CMD [ "python", "./fusion.py" ]
